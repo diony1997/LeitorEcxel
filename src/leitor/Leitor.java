@@ -2,12 +2,10 @@ package leitor;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.ss.usermodel.DataFormatter;
 
 /**
  *
@@ -25,8 +23,8 @@ public class Leitor {
         nomeTimeA = readCellData(3, 0, 1);
         nomeTimeB = readCellData(3, 0, 2);
         vencedor = readCellData(0, 20, 1);
-        System.out.println("Mapa: " + mapa + "\nTime 1: " + nomeTimeA + "\tTime 2: " + nomeTimeB + "\nVencedor: " + vencedor);
-        System.out.println(readCellData(0,8,1));
+        //System.out.println("Mapa: " + mapa + "\nTime 1: " + nomeTimeA + "\tTime 2: " + nomeTimeB + "\nVencedor: " + vencedor);
+
         /* Exemplo de Escrita
         writeCellData(0, 2, 1, "XxXx");
         writeCellData(0, 3, 1, "XxXx");
@@ -40,24 +38,25 @@ public class Leitor {
         String saida = "";
         XSSFWorkbook wb = null;
         try {
-            FileInputStream arquivo = new FileInputStream("Exemplo\\testeA.xlsx");
+            FileInputStream arquivo = new FileInputStream("C:\\Users\\Diony\\Documents\\NetBeansProjects\\Leitor\\Exemplo\\testeA.xlsx");
             wb = new XSSFWorkbook(arquivo);
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         Sheet sheet = wb.getSheetAt(tabela);
         Row row = sheet.getRow(linha);
         Cell cell = row.getCell(coluna);
-        DataFormatter formatter = new DataFormatter();
-        saida = formatter.formatCellValue(cell);
+        saida = cell.getStringCellValue();
         // Alguns lugares fala para usar isso, deve evitar problemas com memoria mas funciona sem
         try {
             wb.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         return saida;
     }
-    
+
     /*
     Se o arquivo ja estiver aberto por outro programa retorna erro
     */
@@ -65,9 +64,10 @@ public class Leitor {
         XSSFWorkbook wb = null;
         Row row;
         try {
-            FileInputStream arquivo = new FileInputStream("Exemplo\\testeA.xlsx");
+            FileInputStream arquivo = new FileInputStream("C:\\Users\\Diony\\Documents\\NetBeansProjects\\Leitor\\Exemplo\\testeA.xlsx");
             wb = new XSSFWorkbook(arquivo);
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         /* Para criar uma nova tabela(aba)
         Sheet sheet = wb.createSheet("Employee");
@@ -87,10 +87,11 @@ public class Leitor {
         cell.setCellType(CellType.STRING);
         cell.setCellValue(conteudo);
         try {
-            FileOutputStream arquivo = new FileOutputStream("Exemplo\\testeA.xlsx");
+            FileOutputStream arquivo = new FileOutputStream("C:\\Users\\Diony\\Documents\\NetBeansProjects\\Leitor\\Exemplo\\testeA.xlsx");
             wb.write(arquivo);
             wb.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         System.out.println("Escrito com Sucesso");
     }
