@@ -2,6 +2,7 @@ package leitor;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -25,8 +26,8 @@ public class Leitor {
         nomeTimeA = readCellData(3, 0, 1);
         nomeTimeB = readCellData(3, 0, 2);
         vencedor = readCellData(0, 20, 1);
-        //System.out.println("Mapa: " + mapa + "\nTime 1: " + nomeTimeA + "\tTime 2: " + nomeTimeB + "\nVencedor: " + vencedor);
-        //System.out.println(readCellData(0,8,1));
+        System.out.println("Mapa: " + mapa + "\nTime 1: " + nomeTimeA + "\tTime 2: " + nomeTimeB + "\nVencedor: " + vencedor);
+        System.out.println(readCellData(0,8,1));
 
         /* Exemplo de Escrita
         writeCellData(0, 2, 1, "XxXx");
@@ -41,7 +42,7 @@ public class Leitor {
         String saida = "";
         XSSFWorkbook wb = null;
         try {
-            FileInputStream arquivo = new FileInputStream("C:\\Users\\Diony\\Documents\\NetBeansProjects\\Leitor\\Exemplo\\testeA.xlsx");
+            FileInputStream arquivo = new FileInputStream("Exemplo\\testeA.xlsx");
             wb = new XSSFWorkbook(arquivo);
         } catch (IOException e) {
         }
@@ -66,7 +67,7 @@ public class Leitor {
         XSSFWorkbook wb = null;
         Row row;
         try {
-            FileInputStream arquivo = new FileInputStream("C:\\Users\\Diony\\Documents\\NetBeansProjects\\Leitor\\Exemplo\\testeA.xlsx");
+            FileInputStream arquivo = new FileInputStream("Exemplo\\testeA.xlsx");
             wb = new XSSFWorkbook(arquivo);
         } catch (IOException e) {
         }
